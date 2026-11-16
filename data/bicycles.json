@@ -1,0 +1,95 @@
+[
+	{
+		"slug": "102d7137-a65c-4c73-9d2d-fcd08f291001",
+		"name": "Aeroform R9",
+		"year": 2023,
+		"price": 45850,
+		"image": "aeroform-r9-main.jpg",
+		"alt": "Pre-owned road bike displayed in a shop",
+		"gallery": [
+			"aeroform-r9-gallery-1.jpg",
+			"aeroform-r9-gallery-2.jpg",
+			"aeroform-r9-gallery-3.jpg"
+		],
+		"specList": [
+			{ "label": "Size", "value": "56 cm · fits approx. 175–183 cm" },
+			{ "label": "Weight", "value": "7.2 kg" },
+			{ "label": "Frame", "value": "Aero carbon · 56 cm" },
+			{ "label": "Groupset", "value": "Shimano Ultegra Di2 · 12 speed" },
+			{ "label": "Wheels", "value": "45 mm carbon clinchers" }
+		],
+		"description": "A fast, all-round race build with a responsive carbon frame and electronic shifting. Inspected, tuned, and ready for its next season.",
+		"available": true,
+		"isRentable": true,
+		"inspectionScores": [
+			{ "areaKey": "frame-fork", "points": 24, "notes": "No structural damage observed; alignment is within tolerance." },
+			{ "areaKey": "wheels-tyres", "points": 19, "notes": "Wheels run true; tyres show light, even wear." },
+			{ "areaKey": "drivetrain", "points": 19, "notes": "Chain wear is low; shifts cleanly under load." },
+			{ "areaKey": "braking", "points": 14, "notes": "Strong braking; pads have substantial life remaining." },
+			{ "areaKey": "cockpit-fit", "points": 10, "notes": "Contact points are secure and adjust across the fit range." },
+			{ "areaKey": "ride-test-records", "points": 10, "notes": "Road test passed; serial and included parts recorded." }
+		]
+	},
+	{
+		"slug": "a0870f4b-2229-48a7-89c8-92d5a95d1002",
+		"name": "Summit Pro 7",
+		"year": 2022,
+		"price": 35600,
+		"image": "summit-pro-7-main.jpg",
+		"alt": "Pre-owned bicycle in a dark showroom",
+		"gallery": [
+			"summit-pro-7-gallery-1.jpg",
+			"summit-pro-7-gallery-2.jpg",
+			"summit-pro-7-gallery-3.jpg"
+		],
+		"specList": [
+			{ "label": "Size", "value": "54 cm · fits approx. 168–177 cm" },
+			{ "label": "Weight", "value": "6.8 kg" },
+			{ "label": "Frame", "value": "Lightweight carbon · 54 cm" },
+			{ "label": "Groupset", "value": "Shimano Dura-Ace · 11 speed" },
+			{ "label": "Wheels", "value": "Low-profile alloy climbing wheels" }
+		],
+		"description": "A light, composed climbing bike with a dependable mechanical groupset. A few cosmetic marks are noted; the inspection confirms a solid mechanical condition.",
+		"available": true,
+		"isRentable": true,
+		"inspectionScores": [
+			{ "areaKey": "frame-fork", "points": 23, "notes": "Frame is sound; small cosmetic marks are recorded." },
+			{ "areaKey": "wheels-tyres", "points": 18, "notes": "Wheels are true with moderate tyre wear." },
+			{ "areaKey": "drivetrain", "points": 18, "notes": "Normal wear for distance; shifting is consistent." },
+			{ "areaKey": "braking", "points": 14, "notes": "Brakes pass force and return checks." },
+			{ "areaKey": "cockpit-fit", "points": 10, "notes": "Contact points secure; adjustment range recorded." },
+			{ "areaKey": "ride-test-records", "points": 9, "notes": "Road test passed; minor drivetrain noise under load noted." }
+		]
+	},
+	{
+		"slug": "b658d63e-4bb2-4f9c-a1b2-4991d7051003",
+		"name": "Vector TT 8",
+		"year": 2023,
+		"price": 55400,
+		"image": "vector-tt-8-main.jpg",
+		"alt": "Pre-owned bicycle displayed on a showroom rack",
+		"gallery": [
+			"vector-tt-8-gallery-1.jpg",
+			"vector-tt-8-gallery-2.jpg",
+			"vector-tt-8-gallery-3.jpg"
+		],
+		"specList": [
+			{ "label": "Size", "value": "Medium · fit assessment recommended" },
+			{ "label": "Weight", "value": "8.4 kg" },
+			{ "label": "Frame", "value": "TT carbon monocoque · M" },
+			{ "label": "Groupset", "value": "Shimano Ultegra Di2 · 12 speed" },
+			{ "label": "Wheels", "value": "Disc rear / 80 mm front carbon" }
+		],
+		"description": "A race-ready time-trial setup with integrated hydration and electronic shifting. Low recorded distance and a clean inspection make this a standout race-day option.",
+		"available": true,
+		"isRentable": true,
+		"inspectionScores": [
+			{ "areaKey": "frame-fork", "points": 25, "notes": "Frame and fork inspection passed with no visible defects." },
+			{ "areaKey": "wheels-tyres", "points": 19, "notes": "Carbon wheels true; tyre condition is very good." },
+			{ "areaKey": "drivetrain", "points": 20, "notes": "Electronic shifting and drivetrain pass full range test." },
+			{ "areaKey": "braking", "points": 14, "notes": "Braking system passes; pads show light wear." },
+			{ "areaKey": "cockpit-fit", "points": 10, "notes": "TT extensions and contact points are secure." },
+			{ "areaKey": "ride-test-records", "points": 10, "notes": "Loaded road test passed; serial and included parts recorded." }
+		]
+	}
+]

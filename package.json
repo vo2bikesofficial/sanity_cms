@@ -8,6 +8,8 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
+    "seed": "node import-data.mjs",
+    "fetch": "node fetch-bicycles.mjs",
     "dev": "sanity dev",
     "start": "sanity start"
   },
@@ -15,16 +17,17 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^6.18.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "sanity": "^6.18.0",
+    "@sanity/client": "^8.9.0",
+    "@sanity/vision": "^6.23.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanity": "^6.23.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^7",
+    "@sanity/eslint-config-studio": "^6.0.0",
     "@types/react": "^19.2.14",
-    "eslint": "^10.8.1",
+    "eslint": "^9.39.5",
     "prettier": "^3.5",
     "typescript": "~6.0"
   },

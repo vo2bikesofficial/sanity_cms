@@ -10,7 +10,25 @@ export default defineConfig({
   projectId: 'lkeuttht',
   dataset: 'trial',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Inspection standard')
+              .id('inspectionStandard')
+              .child(
+                S.document()
+                  .schemaType('inspectionStandard')
+                  .documentId('inspectionStandard'),
+              ),
+            ...S.documentTypeListItems().filter((item) => item.getId() !== 'inspectionStandard'),
+          ]),
+    }),
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,

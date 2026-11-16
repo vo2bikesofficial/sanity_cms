@@ -1,0 +1,74 @@
+[
+	{
+		"key": "frame-fork",
+		"title": "Frame & fork",
+		"maxPoints": 25,
+		"description": "Structural integrity, alignment, bearings, mounts, and visible damage or repairs.",
+		"criteria": [
+			"Inspect frame and fork for cracks, dents, and repairs",
+			"Check frame and fork alignment",
+			"Check headset play, steerer, and bearings",
+			"Inspect seatpost fit, threads, mounts, and hardware"
+		]
+	},
+	{
+		"key": "wheels-tyres",
+		"title": "Wheels & tyres",
+		"maxPoints": 20,
+		"description": "Wheel condition, spoke tension, hub bearings, tyre casing, and tubeless setup.",
+		"criteria": [
+			"Check rim condition and wheel trueness",
+			"Check spoke tension and nipple condition",
+			"Check hub rotation and bearing play",
+			"Inspect tyre casing, tread, and tubeless setup"
+		]
+	},
+	{
+		"key": "drivetrain",
+		"title": "Drivetrain",
+		"maxPoints": 20,
+		"description": "Wear, gear changes, chainrings, cassette, crank, and bottom bracket condition.",
+		"criteria": [
+			"Measure chain wear",
+			"Inspect cassette and chainring teeth",
+			"Test gear changes across the full range",
+			"Check derailleur hanger, crank, and bottom bracket"
+		]
+	},
+	{
+		"key": "braking",
+		"title": "Braking",
+		"maxPoints": 15,
+		"description": "Pad life, braking surfaces, lines or cables, lever feel, and braking force.",
+		"criteria": [
+			"Measure brake pad thickness and remaining life",
+			"Inspect rotor or rim braking surfaces",
+			"Inspect hydraulic lines or cable condition",
+			"Test lever return, alignment, and braking force"
+		]
+	},
+	{
+		"key": "cockpit-fit",
+		"title": "Cockpit & fit",
+		"maxPoints": 10,
+		"description": "Contact points, fastener security, adjustability, and fit measurements.",
+		"criteria": [
+			"Check bar, stem, and seatpost security",
+			"Inspect saddle rails and adjustment range",
+			"Check torque-critical fasteners",
+			"Record contact points and fit measurements"
+		]
+	},
+	{
+		"key": "ride-test-records",
+		"title": "Ride test & records",
+		"maxPoints": 10,
+		"description": "Loaded road test, handling, unusual noises, frame identity, and included items.",
+		"criteria": [
+			"Complete a road test under load",
+			"Test shifting, braking, handling, and unusual noise",
+			"Record frame or serial number",
+			"Confirm included components and ownership details"
+		]
+	}
+]
