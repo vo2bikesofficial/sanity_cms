@@ -1,5 +1,6 @@
 import { readFile, stat } from 'node:fs/promises'
 import { createClient } from '@sanity/client'
+import { generateBikeGuid, isBikeGuidForModel, normalizeBikeModel } from './lib/bikeGuid.mjs'
 
 const projectId = 'lkeuttht'
 const dataset = 'trial'
@@ -16,7 +17,6 @@ const [areaSeeds, bicycleSeeds] = await Promise.all([
 	readFile(new URL('./data/bicycles.json', import.meta.url), 'utf8').then(JSON.parse),
 ])
 
-const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 const areaCaps = new Map(areaSeeds.map((area) => [area.key, area.maxPoints]))
 const maximumTotal = [...areaCaps.values()].reduce((sum, points) => sum + points, 0)
 
@@ -48,7 +48,13 @@ async function isImageFile(filename) {
 const missingImages = new Set()
 
 for (const bike of bicycleSeeds) {
-	if (!uuidPattern.test(bike.slug)) throw new Error(`${bike.name} must have a UUID slug.`)
+	if (!normalizeBikeModel(bike.name)) throw new Error('Every bicycle must have a name.')
+	if (!Number.isInteger(bike.price) || bike.price < 0) {
+		throw new Error(`${bike.name} has an invalid selling price.`)
+	}
+	if (bike.newBikePrice != null && (!Number.isInteger(bike.newBikePrice) || bike.newBikePrice < 0)) {
+		throw new Error(`${bike.name} has an invalid new bike price.`)
+	}
 	const files = [bike.image, ...bike.gallery]
 	for (const file of files) {
 		if (typeof file !== 'string' || /[/\\]|\.\./.test(file)) {
@@ -145,12 +151,20 @@ await client.createOrReplace({
 })
 
 for (const bike of bicycleSeeds) {
-	const existingId = await client.fetch(
-		'*[_type == "bicycle" && slug == $slug][0]._id',
-		{ slug: bike.slug },
+	const model = normalizeBikeModel(bike.name)
+	const existing = await client.fetch(
+		'*[_type == "bicycle" && name == $name][0]{_id, slug}',
+		{ name: model },
 	)
+	// Re-running the seed keeps the GUID a document already has. Documents with
+	// a legacy UUID get the next counter value for their name.
+	const slug =
+		existing && isBikeGuidForModel(existing.slug, model)
+			? existing.slug
+			: await generateBikeGuid(model, client)
 	const document = {
 		...bike,
+		slug,
 		_type: 'bicycle',
 		image: await toImageField(bike.image),
 		gallery: await Promise.all(
@@ -172,7 +186,7 @@ for (const bike of bicycleSeeds) {
 			...spec,
 		})),
 	}
-	if (existingId) await client.createOrReplace({ ...document, _id: existingId })
+	if (existing?._id) await client.createOrReplace({ ...document, _id: existing._id })
 	else await client.create(document)
 }
 

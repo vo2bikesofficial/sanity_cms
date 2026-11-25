@@ -4,7 +4,8 @@ Sanity Studio for the vo2bikes pre-owned bicycle showroom.
 
 ## Content model
 
-- `bicycle` stores product details, uploaded image assets (main image + gallery), availability, a UUID slug, and inspection scores.
+- `bicycle` stores product details, uploaded image assets (main image + gallery), availability, a generated Bike GUID slug (`<url-friendly bike name>-<counter>`, e.g. `Aeroform_R9-1`), and inspection scores.
+- `bikeGuidCounter` keeps one document per bike name with the last counter value handed out for that model.
 - `inspectionArea` defines editable checklist areas and their maximum points.
 - `inspectionStandard` is a singleton that orders the areas and requires their maximum points to total 100.
 - Every bicycle is scored once per configured area. Points cannot exceed that area's maximum; the earned score can be below 100.
@@ -25,6 +26,8 @@ Remove-Item Env:SANITY_API_TOKEN
 ```
 
 The token is read only from the environment and is not stored in the repository.
+
+Bike GUIDs are generated from the bike name and a counter (for example, `Aeroform R9-1`). Seeding creates the `bikeGuidCounter` documents and gives existing bicycles with legacy UUID slugs their first counter-based GUID. To migrate a dataset without re-importing the catalogue, run `npm run migrate:guids` with the same token set.
 
 ## Fetch images with the Sanity client
 

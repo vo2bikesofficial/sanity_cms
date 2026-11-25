@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {DuplicateBicycleAction} from './actions/duplicateBicycleAction'
 import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
@@ -32,5 +33,14 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+  },
+
+  document: {
+    actions: (previousActions, {schemaType}) =>
+      schemaType === 'bicycle'
+        ? previousActions.map((action) =>
+            action.action === 'duplicate' ? DuplicateBicycleAction : action,
+          )
+        : previousActions,
   },
 })

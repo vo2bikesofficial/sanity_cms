@@ -1,4 +1,4 @@
-import { UlistIcon } from '@sanity/icons/Ulist'
+import { UlistIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export const bicycleSpec = defineType({

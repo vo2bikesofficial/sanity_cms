@@ -1,8 +1,14 @@
-import { TagIcon } from '@sanity/icons/Tag'
+import { TagIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
+import { BikeGuidInput } from '../components/BikeGuidInput'
+import {
+  BIKE_GUID_API_VERSION,
+  isBikeGuidForModel,
+  normalizeBikeModel,
+  urlFriendlyBikeModel,
+} from '../lib/bikeGuid.mjs'
 
-const apiVersion = '2025-02-19'
-const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+const apiVersion = BIKE_GUID_API_VERSION
 
 export const bicycle = defineType({
   name: 'bicycle',
@@ -19,13 +25,18 @@ export const bicycle = defineType({
     defineField({
       name: 'slug',
       title: 'Bike GUID',
-      description: 'Generated automatically and locked to keep the bike URL stable and unique.',
+      description:
+        'Generated automatically from the bike name and a per-model counter, then locked to keep the bike URL stable and unique.',
       type: 'string',
-      initialValue: () => crypto.randomUUID(),
+      components: { input: BikeGuidInput },
       readOnly: true,
       validation: (rule) =>
         rule.required().custom(async (value, context) => {
-          if (typeof value !== 'string' || !uuidPattern.test(value)) return 'Bike GUID must be a UUID v4'
+          const model = normalizeBikeModel(context.document?.name)
+          if (!model) return 'Enter a bike name before generating a Bike GUID'
+          if (!isBikeGuidForModel(value, model)) {
+            return `Bike GUID must be the URL-friendly bike name followed by a counter, e.g. ${urlFriendlyBikeModel(model)}-1`
+          }
 
           // Ignore both the published and the draft copy of the document being
           // edited. Without excluding the draft, a published bike reports its
@@ -46,6 +57,20 @@ export const bicycle = defineType({
       title: 'Model year',
       type: 'number',
       validation: (rule) => rule.required().integer().min(1900).max(2100),
+    }),
+    defineField({
+      name: 'newBikePrice',
+      title: 'New bike price (INR)',
+      description: 'Original/new-bike price shown struck through beside our price on the Buy Bikes page.',
+      type: 'number',
+      validation: (rule) =>
+        rule.integer().min(0).custom((value, context) => {
+          if (value == null) return true
+          const sellingPrice = context.document?.price
+          return typeof sellingPrice === 'number' && value <= sellingPrice
+            ? 'New bike price should be higher than our selling price'
+            : true
+        }),
     }),
     defineField({
       name: 'price',
