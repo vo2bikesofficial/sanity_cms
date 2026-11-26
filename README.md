@@ -2,6 +2,46 @@
 
 Sanity Studio for the vo2bikes pre-owned bicycle showroom.
 
+## Git repositories
+
+| Repository | Local path | Remote | Purpose |
+| --- | --- | --- | --- |
+| Sanity CMS | `.` (this repo) | https://github.com/vo2bikesofficial/sanity_cms.git | Content editing, schemas, custom actions, and data scripts |
+| Storefront | `../vo_two/site` | https://github.com/vo2bikesofficial/vo_two.git | Public Astro website that consumes this content |
+
+The storefront also has an upstream fork: https://github.com/Shashank-Pr/vo_two.git
+
+## Tools and technologies
+
+### CMS
+
+| Technology | Version | Used for |
+| --- | --- | --- |
+| Sanity Studio | `^5.14.1` | Content editing UI for bicycles, inspection areas, and inspection standards |
+| React | `^19.3.1` | Custom Studio input components and document actions only |
+| TypeScript | `~6.0` | Schemas, actions, inputs, and Node scripts |
+| `styled-components` | `^6.1.18` | Styling custom Studio components |
+| `@sanity/vision` | `^5.31.1` | Running GROQ queries inside the Studio |
+| `@sanity/client` | `^8.9.0` | Seed importer, fetch script, and GUID migration script |
+| `@sanity/icons` | `^3.8.0` | Icons for Studio actions and custom UI |
+| ESLint + Prettier | `^9.39.5` / `^3.5` | Linting and formatting Studio code |
+
+### Storefront consuming this CMS
+
+See [`../vo_two/site/README.md`](../vo_two/site/README.md) for the full website documentation.
+
+| Technology | Version | Used for |
+| --- | --- | --- |
+| Astro | `^7.3.5` | Pages, layouts, components, routing, and static generation |
+| TypeScript | via Astro | Typed data helpers and Sanity query helpers |
+| GROQ | `^6.18.0` | Querying Sanity documents from the site |
+| `@sanity/astro` | `^3.5.1` | Astro integration configured with the project ID and dataset |
+| `@sanity/client` | via `@sanity/astro` | Executing queries against this dataset |
+| `@sanity/image-url` | `^2.1.1` | Responsive, hotspot-aware image URLs |
+| Plain scoped CSS | Astro `<style>` blocks | Layout, responsive design, and theme styling |
+| Vanilla JavaScript | Astro `<script>` blocks | Share toast, inspection toggle, and card links |
+| Node.js | `>=22.12.0` | Required runtime for the Astro site |
+
 ## Content model
 
 - `bicycle` stores product details, uploaded image assets (main image + gallery), availability, a generated Bike GUID slug (`<url-friendly bike name>-<counter>`, e.g. `Aeroform_R9-1`), and inspection scores.
